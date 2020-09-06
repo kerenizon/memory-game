@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./memoryGame.css">
+    <link href="https://fonts.googleapis.com/css2?family=Grandstander&display=swap" rel="stylesheet">
+    <link href='https://fonts.googleapis.com/css?family=Orbitron' rel='stylesheet' type='text/css'>
+    <title>memory-game</title>
+</head>
+<body>
+    <div class="container">
+        <header>    
+            <button class="reset">NEW GAME</button>
+            <h1 class="guessesCounter">No. of wrong guesses: &nbsp;<span class="guessesCounterNum">0</span></h1>
+            <div class="timer">timer</div>
+        </header>
+        <div class="center">
+            <section class="side">
+                <div class="themes"></div>
+                <div class="custom-select">
+                    <div class="custom-select__trigger"><span>choose level:</span>
+                        <div class="arrow"></div>
+                    </div>
+                    <div class="custom-options">
+                        <span class="custom-option selected">level 1</span>
+                        <span class="custom-option">level 2</span>
+                        <span class="custom-option">level 3</span>
+                    </div>
+                </div>
+                <div class="high-score">
+                    <h1>HIGH SCORE:</h1>
+                    <p>nickname: <span class="playerNick"></span></p>
+                    <p>num of wrong guesses: <span class="playerGuesses"></span></p>
+                    <p>time: <span class="playertime"></span></p>
+                </div>
+            </section>
+
+            <section class="board">
+
+            </section>
+        </div>
+
+        <div class="modalOuter">
+            <div class="modalInner">
+                <div class="message">
+                    <h1>WELCOME!!!</h1>
+                    <label>Enter your nickname:</label><br>
+                    <input class="playerName" type="text"><br><br>
+                    <label>Are you ready?</label><br> <br>
+                    <button class="startBtn">start</button>
+                </div>
+                <div class="win">
+                    <h1>CONGRATULATIONS!!!</h1>
+                    <p>You won in: &nbsp;<span class="gameTime"></span>&nbsp; minutes, </p>
+                    <p> with &nbsp;<span class="numGusses"></span>&nbsp; guesses!</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="./memoryGame.js"></script>
+</body>
+</html>

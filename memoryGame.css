@@ -1,0 +1,286 @@
+:root{
+    --numColumns: ;
+    --numRows: ;
+    --imgHeight: ;
+    --imgWidth: ;
+    --primaryColor: #776d8a;
+    --secondaryColor: #0f9bbe;
+}
+
+*, *::before, *::after{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.container{
+    height: 100vh;
+    background: url(./imgs/board.jpg) no-repeat center center /cover;
+    display: flex;
+    flex-direction: column ;
+    font-family: 'Grandstander', cursive;
+    color: var(--primaryColor);
+}
+
+header{
+    height: 10vh;
+    margin: 2vh 1%;
+    background: #f3e6e3 ;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    border-radius: 5px;
+}
+
+.center{
+    height: 84vh;
+    display: flex;
+ 
+}
+
+.side{
+    background: #dbe3e5;
+    width: 15%;
+    margin: 0 1%;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+}
+
+ /*/////////////////* pre-game *//*/////////////////////*/
+
+.modalOuter{
+    display: grid;
+    background: rgba(0, 0, 0, 0.8);
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    /* Hide this modal until we need it */
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s;
+}
+
+.modalOuter.open {
+    opacity: 1;
+    pointer-events: all;
+}
+
+.modalInner{
+    height: 500px;
+    width: 500px;
+    background: white;
+    margin: auto;
+    transform: translateY(-200%);
+    transition: transform 2s;
+    display: flex;
+}
+
+.modalOuter.open .modalInner {
+    transform: translateY(0);
+}
+
+.message , .win{
+    margin: auto;
+    text-align: center;
+    font-size: 1.5rem;
+    /* Hide this modal until we need it */
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.2s;
+}
+
+.message.open , .win.open{
+    opacity: 1;
+    pointer-events: all;
+}
+
+.message h1, .message label, .message input, .win h1, .win p{
+    margin: 25px 0;
+}
+
+.message button, .message input{
+    padding: 5px 10px;
+}
+
+.message button, .reset{
+    padding: 10px 20px;
+    cursor: pointer;
+    font-family: 'Grandstander', cursive;
+    font-size: 1.2rem;
+    border-radius: 5px;
+    background: var(--primaryColor);
+    border: 1px solid var(--primaryColor);
+    color: white;
+}
+
+.win{
+    position: absolute;
+    top: 100px;
+    left: 30px;  
+}
+
+ /*/////////////////* header *//*/////////////////////*/
+
+.timer{
+    width: 200px;
+    font-weight: 800;
+    font-size: 1.5rem;
+    font-family: 'Orbitron', sans-serif;
+}
+
+ /*/////////////////* side *//*/////////////////////*/
+
+ /*/////* themes *//*/////*/
+ .themes{
+    margin: 10px 0;
+ }
+
+ /*/////* levels *//*/////*/
+
+.custom-select {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 190px;
+    margin: 10px 0;
+    
+}
+.custom-select__trigger {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 15px;
+    font-size: 20px;
+    font-weight: 300;
+    color: var(--secondaryColor);
+    height: 50px;
+    background: #ffffff;
+    cursor: pointer;
+    border: 2px solid var(--secondaryColor);
+    border-radius: 5px;
+}
+.custom-options {
+    position: absolute;
+    display: block;
+    top: 100%;
+    left: 0;
+    right: 0;
+    border: 2px solid var(--secondaryColor);
+    background: #fff;
+    transition: all 0.5s;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    z-index: 2;
+}
+.custom-select.open .custom-options {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: all;
+}
+.custom-option {
+    position: relative;
+    display: block;
+    padding: 0 22px;
+    font-size: 22px;
+    font-weight: 300;
+    color: var(--secondaryColor);
+    line-height: 50px;
+    cursor: pointer;
+    transition: all 0.5s;
+    background-color: white;
+}
+.custom-option:hover {
+    cursor: pointer;
+    background-color: #b2b2b2;
+}
+.custom-option.selected {
+    color: #ffffff;
+    background-color: var(--secondaryColor);
+}
+.arrow {
+    position: relative;
+    height: 15px;
+    width: 15px;
+}
+.arrow::before, .arrow::after {
+    content: "";
+    position: absolute;
+    bottom: 0px;
+    width: 0.15rem;
+    height: 100%;
+}
+.arrow::before {
+    left: -5px;
+    transform: rotate(45deg);
+    background-color: var(--secondaryColor);
+}
+.arrow::after {
+    left: 5px;
+    transform: rotate(-45deg);
+    background-color: var(--secondaryColor);
+}
+.open .arrow::before {
+    left: -5px;
+    transform: rotate(-45deg);
+}
+.open .arrow::after {
+    left: 5px;
+    transform: rotate(45deg);
+}
+
+ /*/////* high-score *//*/////*/
+
+ .high-score{
+    color: var(--secondaryColor);
+ }
+
+  /*/////////////////* board *//*/////////////////////*/
+.board{
+    width: 70%;
+    height: 90%;
+    margin-top: 2%;
+    margin-left: 6%;
+
+    display: grid;
+    grid-template-columns: repeat( var(--numColumns),1fr);
+    grid-template-rows: repeat(var(--numRows),1fr);
+    grid-gap: 15px;
+
+    perspective: 1000px;
+}
+
+.card {
+    width: var(--imgWidth);
+    height: var(--imgHeight);
+    transition: transform 1s;
+    transform-style: preserve-3d;
+    cursor: pointer;
+    position: relative;
+}
+  
+.card.is-flipped {
+    transform: rotateY(180deg);
+}
+  
+.card > div {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    backface-visibility: hidden;
+}
+  
+.frontDiv {
+    background: white;
+}
+  
+.imgDiv {
+    transform: rotateY(180deg);
+}
+ 
